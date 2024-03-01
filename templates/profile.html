@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title%}Profile{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/profile.css" type="text/css" charset="utf-8">
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+<div class="formContainer">
+<div class="profile-card cardcenter" style="padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">
+    <div class="profile-back" style="margin-bottom: -73px;"></div>
+    <img class="profile-pic"
+        src="{{ current_user.profile_image_path }}">
+    <h3 class="profile-name" style="padding-bottom: 19px;margin-top: 8px;text-transform:uppercase;">{{
+        current_user.firstname }} {{
+        current_user.lastname }}</h3>
+<ul class="social-list">
+        <li> <i class="fa fa-facebook-official"></i></li>
+        <li> <i class="fa fa-twitter-square"></i></li>
+        <li> <i class="fa fa-linkedin-square"></i></li>
+    </ul>
+
+    <div class="col-12 py-3">
+        <a href="/edit_profile"><button class="glow-on-hover" type="button">Edit profile</button></a>
+        <a href="/user_technology"><button class="glow-on-hover" type="button">Your Technologies</button></a>
+        <div class="btn-group"></div>
+    </div>
+</div>
+<br>
+<div class="card shadow cardcenter">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Contact Details</p>
+    </div>
+    <div class="card-body">
+        <div class="">
+            <br>
+            <div class="col">
+                <div class="mb-3"><label class="form-label"><strong>Email: </strong> {{ current_user.email }}</label>
+                </div>
+                <br>
+            </div>
+            <div class="col">
+                <div class="mb-3"><label class="form-label"><strong>Phone number: </strong>{{ current_user.phone_number
+                        }}</label></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+    <div class="card shadow cardcenter">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold"> Department</p>
+        </div>
+        <div class="card-body">
+            <h2> {{ user_department.name }}</h2>
+        </div>
+    </div>
+    <br>
+    <div class="card shadow cardcenter">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold"> Projects</p>
+        </div>
+        <div class="card-body">
+            <ol>
+                {% for project in user_projects %}
+                <a href="/project/{{ project.id }}">
+                    <li href="/project/{{ project.id }}">{{ project.name }}</li>
+                </a>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+<br>
+
+    {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Survey{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/survey.css') }}">
+
+{% endblock %}
+
+{% block header %}
+{{ super() }}
+{% endblock %}
+
+{% block main %}
+{{ super() }}
+<h1>Weekly Survey Not Available</h1>
+<body>
+<div class="formContainer">
+    <p>You have already submitted a survey for this project within the last week.<br> Please come back on <strong>{{
+        next_monday.strftime('%A, %b %d, %Y') }}</strong> to submit a new survey.</p><br>
+</div></body>
+{% endblock %}

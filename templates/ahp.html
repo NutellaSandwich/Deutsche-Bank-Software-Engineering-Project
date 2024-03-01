@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title%}AHP Survey{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/ahp.css" type="text/css" charset="utf-8">
+<script src="static/js/ahp_questions.js" defer></script>
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+<!-- {{super()}} -->
+
+<div class="title">PROJECT PRIORITIES</div>
+
+    <div id="container">
+        <!-- <div id="question-container" class="hide"> -->
+            <div id="question">Question Here</div>
+            <div id="ans-btns" class="btn-grid">
+                <button class="btn-primary">Answer 1</button>
+                <span class="text">OR</span>
+                <button class="btn-primary">Answer 2</button>
+                <button class="btn-primary">Answer 3</button>
+            </div>
+        <!-- </div> -->
+        <div id="controls">
+            <button id="prev-btn" class="prev-btn btn-primary hide">Back</button>
+            <button id="submit-btn" class="submit-btn btn-primary hide">Submit</button>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+<!-- add error messages if no data entered -->

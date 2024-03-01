@@ -1,0 +1,46 @@
+{% extends"base.html" %}
+{% block title%}Technologies{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/user_technology.css')}}" type="text/css" charset="utf-8">
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Project Technologies</h1>
+<button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/add_technology'">Add New Technology</button>
+<br>
+
+<div class="formContainer">
+    <form id="add_project_technology_form" action="/project_technology/{{project.id}}" method="POST">
+        <table class="table">
+            <tr>
+                <th>Technology</th>
+                <th>Used?</th>
+            </tr>
+            {% for technology in technologies %}
+            <tr>
+                <td>{{technology.name}}</td>
+                <td><input type="checkbox" id="{{technology.id}}" name="{{technology.id}}" value="True" {% if technology.is_used == True %} checked {% endif %}></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

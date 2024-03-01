@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/logo-blue.png')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css" charset="utf-8">
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/Profile-Card.css')}}">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='assets/css/untilted.css')}}"> -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+
+    {% endblock %}
+</head>
+</div>
+
+<body id="page-top">
+
+    <div id="wrapper">{% block setup %}
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+                    href="/profile">
+                    <div class="sidebar-brand-icon "><i class="fas fa-user"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>Profile</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/projects"><i
+                                class="fas fa-group"></i><span>Projects</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user_technology"><i class="fas fa-cogs"></i><span>My
+                                Technologies</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/edit_profile"><i class="fas fa-pencil-square-o"></i><span>Edit
+                                Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/new_project"><i
+                                class="fas fa-file-code-o"></i><span>New Project</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        {% endblock %}
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown"
+                                href="#">
+                                <span class="d-none d-lg-inline me-2 text-gray-600 small">
+                                    {% if current_user.is_authenticated %}
+                                    {{ current_user.username }}
+                                    {% else %}
+                                    User
+                                    {% endif %}
+                                </span>
+                                <img class="border rounded-circle img-profile" src=""></a>
+                            <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
+                                    class="dropdown-item" href="/profile"><i
+                                        class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                                {% if current_user.is_authenticated %}
+                                <a class="dropdown-item" href="/edit_profile"><i
+                                        class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Edit
+                                    Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout"><i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                {% else %}
+                                <a class="dropdown-item" href="/register"><i
+                                        class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Register</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/login"><i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Login</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="center" id="messageBox">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="flashedMessage">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+
+
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">{% block title%}{% endblock %}</h3>
+                    </div>
+                    {% block main %}
+
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="{{url_for('static', filename='assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/chart.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/bs-init.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/theme.js')}}"></script>
+
+    <!-- <div class="center" id="messageBox">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="flashedMessage">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div> -->
+
+</body>
+<br>
+<br>
+<br>
+{% block footer %}
+
+<footer class="bg-white sticky-footer">
+    <div id="content"></div><span style="padding-left: 0px;margin-left: 284px; font-size: 1rem;">Copyright © Brand
+        2023</span>
+</footer>
+
+{% endblock %}
+
+</html>

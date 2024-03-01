@@ -1,0 +1,24 @@
+.btn-primary {
+    background-color: #2fe5b2;
+    color: rgb(41, 44, 47);
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    height: 50px;
+    font-weight: bold;
+    min-width: 120px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary-hover:hover {
+    background-color: #114d3c;
+    transition: 0.25s;
+}
+.formlabel{
+    font-size: x-large;
+}

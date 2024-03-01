@@ -1,0 +1,82 @@
+{% extends"base.html" %}
+{% block title%}{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<script src="static/js/register.js"></script>
+{% endblock %}
+
+{% block setup %}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+<div class="loginContainer">
+
+<h1>Register Account</h1>
+<p>Register an account below.</p>
+
+<div class="formContainer">
+    <form id="registerForm" action="/register" method="POST">
+        <div class="formRowContainer">
+            <label class="formlabel" for="username">Username:</label><br>
+            <input class="textInput" type="text" name="username" id="username" placeholder="Username" required>
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="password">Password:</label><br>
+            <input class="textInput" type="password" name="password" id="password" placeholder="Password" required>
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="firstname">Firstname:</label><br>
+            <input class="textInput" type="text" name="firstname" id="firstname" placeholder="Firstname" required>
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="lastname">Lastname:</label><br>
+            <input class="textInput" type="text" name="lastname" id="lastname" placeholder="Lastname" required>
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="email">Email:</label><br>
+            <input class="textInput" type="text" name="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <!-- Done: put these on a separate page which the user can update the rest of the info with. -->
+        <!-- <div class="formRowContainer">
+            <label class="formlabel" for="phoneNumber">Phone Number:</label><br>
+            <input class="textInput" type="tel" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" required>
+        </div>
+        
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel noCenter" for="department">Department:</label><br>
+            <input class="textInput" type="number" name="department" id="department" placeholder="Department" required>
+        </div>
+
+        <div class="clear">&nbsp;</div> -->
+
+        <!-- Language -->
+        <!-- Timezone -->
+        <!-- Currency -->
+        <!-- Working -->
+        <!-- Years at company -->
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="registerbtn" value="Register">
+        </div>
+    </form>
+
+</div></div>
+
+<br>
+{% endblock %}

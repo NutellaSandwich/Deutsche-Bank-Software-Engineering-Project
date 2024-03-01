@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+}
+#container {
+    border-radius: 10px;
+    padding: 5px 0px 15px 0px;
+    background-color: rgb(143, 133, 216);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 0;
+    margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;margin-top: 5px;
+      padding-top: 30px;
+      border: 2px solid #0C1228;
+              /* This set radius to all 4 corners */  
+              border-radius: 20px;
+              width: fit-content;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #1e223f;
+    background-color: #bfb7cc;
+    margin-top: 5px;
+    padding: 20px;
+    padding-top: 30px;
+    border: 1px solid #1e223f;
+    /* This set radius to all 4 corners */
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 30px;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+#mainContent.card {
+    background: none;
+    z-index: 0;
+}
+
+#ans-btns {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+  }
+  
+  .btn {
+    border: #7231c8;
+   border-radius: 5px;
+    margin: 5px;
+    padding: 30px;
+    background-color: #191d3c;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #e0d1f4;
+    height: auto;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 600;
+    box-shadow: 3px 2px 2px 1px #7231c8;
+  }
+
+  .btn:hover {
+    background-color: #0C1228;
+    transition: 0.25s;  
+    font-size: 1.75rem;
+    color: #7231c8;
+
+  }
+
+  .prev-btn, .submit-btn {
+    padding: 10px 20px;
+  }
+
+  .title {
+    font: 33px sans-serif;
+    color: white;
+    margin: 30px;
+    padding-left: 30px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 2; 
+    
+  }
+
+
+  #question {
+    font-size: 2.2rem;
+    text-align: center;
+    color: #0C1228;
+    font-weight: 900;
+  }
+
+   .text {
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+  } 
+
+  .hide {
+    display: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @media only screen and (max-width: 950px) {
+    .text {
+      display: none;
+    } 
+  }
+  

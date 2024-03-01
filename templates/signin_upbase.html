@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% block head %}
+        <link rel="icon" type="image/x-icon" href="../static/images/logo-blue.png">
+        <link rel="stylesheet" href="static/css/signin_up.css" type="text/css"charset="utf-8">
+        <script src="static/js/jquery-3.6.0.min.js"></script>
+
+        <title>{% block title%}{% endblock %}</title>
+        {% endblock %}
+    </head>
+
+    <body>
+
+        <!-- <div id="header" class="card">
+            {% block header %}
+            <img id="logo" src="../static/images/logo-blue.png" alt="Logo">
+                    
+            {% if current_user.is_authenticated %}
+                <button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/logout'">Logout</button>
+            {% else %}
+                <button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/register'">Register</button>
+                <button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/login'">Login</button>
+            {% endif %}
+
+            {% endblock%}
+        </div> -->
+
+        <div id="mainContent" class="center card">
+            {% if current_user.is_authenticated %}
+                <h1>Hello {{ current_user.username }}</h1>
+            {% endif %}
+
+            {% block main %}
+            
+            {% endblock %}
+        </div>
+        <div class="center" id="messageBox">
+            {% with messages = get_flashed_messages() %}  
+                {% if messages %}  
+                    {% for message in messages %}  
+                        <div class="flashedMessage">
+                            {{ message }}
+                        </div>
+                    {% endfor %}  
+                {% endif %}  
+            {% endwith %} 
+        </div>
+
+    </body>
+</html>

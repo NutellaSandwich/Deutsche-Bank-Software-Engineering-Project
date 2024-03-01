@@ -1,0 +1,21 @@
+/* Might delete this file. It handle the CSS of the household dashboard. Still may have some useful things in. */
+.wigitContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    grid-auto-rows: auto;
+}
+
+.widgit-card {
+    width: auto;
+    height: auto;
+    min-height: 350px;
+    box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.10);
+    background-color: rgb(250, 250, 250);
+    padding: 10px;
+    text-align: start;
+    transition: all 0.25s ease-in-out;
+}
+
+.widgit-card:hover {
+    box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.15);
+}

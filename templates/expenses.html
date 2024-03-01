@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title%}Expenses{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/expmil.css')}}" type="text/css" charset="utf-8">
+<script src="static/js/expenses.js"></script>
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Project Expenses</h1>
+<p>Enter project expenditure details below</p>
+<div class="formContainer">
+<form id="expensesForm" action="#" method="POST">
+    <h4>Title</h4>
+
+    <input class="textInput expenses" type="text" name="expTitle" id="expTitle" placeholder="Expense Title" ><br><br>
+    <h4>Description</h4>
+
+    <textarea rows="4" cols="50" class="textInput" type="text" name="expDescription" id="expDescription" placeholder="Description" ></textarea><br><br>
+    <h4>Amount</h4>
+
+    <input class="textInput expenses" type="number" step="0.01" min="0"  name="expAmount" id="expAmount" placeholder="Amount"  ><br><br>
+    <h4>Date</h4>
+
+    <input class="textInput expenses" type="date"  name="expDate" id="expDate" placeholder="Date" ><br><br>
+    
+    <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="expSubmitBtn" value="Submit">
+</form>
+</div>
+{% endblock %}
+
+<!-- add error messages if no data entered -->

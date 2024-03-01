@@ -1,0 +1,138 @@
+
+.profile-back {
+  background-color: #252d54;
+  height: 150px;
+  margin-bottom: -75px;
+}
+.card {
+  border: 1px solid #2fe5b2;
+}
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.profile-card {
+  text-align: center;
+  margin-bottom: 15px;
+  border: 1px solid #2fe5b2;
+}
+
+.profile-name {
+  background-color: #2fe5b2;
+  color: #000000;
+  font-family: 'Actor', sans-serif;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 10px 0;
+  border-radius: 100px;
+  max-width: 300px;
+  margin: 10px auto 10px auto;
+}
+
+.profile-card .social-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.profile-card .social-list li {
+  display: inline;
+  margin: 0 5px;
+  /*background-color: #2fe5b2;*/
+  /*color: #fff;*/
+  /*padding: 10px;*/
+  /*border-radius: 100%;*/
+}
+
+.profile-bio {
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #b7b9cc;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.profile-card .social-list li i {
+  background-color: #2fe5b2;
+  color: #fff;
+  padding: 10px 11px;
+  border-radius: 100%;
+}
+h1,
+.h1{
+  color: #b7b9cc;
+}
+.glow-on-hover {
+  width: auto;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #0C1228;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 6px;
+  margin-left: 5px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #812277, #4c2781, #111, #040442, #00ffd5, #002bff, #7a00ff, #ff00c8, #0C1228);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #2fe5b2
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #2fe5b2;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+.profile-head {
+  transform: translateY(5rem)
+}
+
+.cover {
+  background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+  background-size: cover;
+  background-repeat: no-repeat
+}

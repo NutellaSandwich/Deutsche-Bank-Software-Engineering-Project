@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title%}Register{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<script src="static/js/register.js"></script>
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Register Account</h1>
+<p>Register an account below.</p>
+
+<form id="registerForm" action="/register" method="POST">
+    <input class="textInput" type="text" name="username" id="username" placeholder="Username" required><br><br>
+
+    <input class="textInput" type="text" name="email" id="email" placeholder="Email" required><br><br>
+
+    <input class="textInput" type="password" name="password" id="password" placeholder="Password" required><br><br>
+
+    <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="registerbtn" value="Register">
+</form>
+
+{% endblock %}

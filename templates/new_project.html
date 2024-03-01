@@ -1,0 +1,91 @@
+{% extends"base.html" %}
+{% block title%}New Project{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="static/css/new_project.css" type="text/css" charset="utf-8">
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Create a new project</h1>
+<p>By creating a new project, you will be assigned as the project manager.</p>
+
+<div class="formContainer">
+    <form id="edit_profile_form" action="/new_project" method="POST" enctype="multipart/form-data">
+        <div class="formRowContainer">
+            <label class="formlabel" for="name">Name:</label><br>
+            <input class="textInput" type="text" name="name" id="name" placeholder="Project Name" required title="What is the name of the project?">
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="budget">Budget:</label><br>
+            <input class="textInput" type="number" name="budget" id="budget" min="0" required title="What is the projects budget?">
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="start_date">Start Date:</label><br>
+            <input class="textInput" type="date" name="start_date" id="start_date" required title="What is the projects start date?">
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="deadline">Deadline:</label><br>
+            <input class="textInput" type="date" name="deadline" id="deadline" required title="What is the projects deadline?">
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="is_complete">Complete?:</label><br>
+            <select class="dropdown" name="is_complete" id="is_complete" required title="Is the project already complete?">
+                <option value="True">True</option>
+                <option value="False" selected="selected">False</option>
+            </select>
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="scope">Scope:</label>
+            <input type="range" min="-5" max="5" value="1" id="scope" name="scope" title="How satisfied are you with the projects scope? too narrow - too wide">
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="github_repo">GitHub Repo URL:</label>
+            <input class="textInput" type="text" id="github_repo" name="github_repo" title="Enter the URL for the projects code repo.">
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="gh_repo_token">GitHub Access Token:</label>
+            <input class="textInput" type="text" id="gh_repo_token" name="gh_repo_token" title="Enter the access token for your projects GitHub repo.">
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <!-- 
+            name
+            budget
+            deadline
+            complete?
+            scope
+
+            Take user to AHP survey if not done.
+            Add separate pages to add technologies, expenses, milestones, users
+         -->
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

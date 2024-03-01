@@ -1,0 +1,199 @@
+.p-card {
+    background-color: rgb(223, 212, 225);
+    padding: 20px;
+    border: 4px solid rgb(12, 18, 40);
+    border-radius: 20px;
+    font-size: 20px;
+    width: fit-content;
+}
+
+.details {
+    color: rgb(78, 115, 223);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.progress-card {
+    background-color: rgb(233, 249, 242);
+    align-items: center;
+    border: 3px solid #89bb99;
+    border-radius: 20px;
+    height: auto;
+    width: fit-content;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 25px;
+    
+
+}
+
+h6,
+.h6 {
+    color: #89bb99;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+h2,
+.h2 {
+    font-size: 70px;
+    text-align: center;
+    color: #7b4cb9;
+    font-weight: bold;
+}
+h3,
+.h3{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+h4,
+.h4 {
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-align: center;
+    font-size: 30px;
+
+}h5,
+.h5 {
+    color: rgb(15, 22, 73);
+    font-weight: bolder;
+    text-align: left;
+
+}
+
+.ol,
+li {
+    margin-left: 10px;
+    color: #89bb99;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 auto;
+    background-color: #7231c8;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    height: 50px;
+    min-width: 120px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary-hover:hover {
+    background-color: #3a1867;
+    transition: 0.25s;
+}
+
+.formContainer {
+    width: 800px;
+    background-color: #9e88c2;
+    padding: 30px;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-top: 5px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 1px solid #0C1228;
+    /* This set radius to all 4 corners */
+    border-radius: 20px;
+    /* width: fit-content; */
+
+}
+
+.textInput {
+    width: 100%;
+}
+
+.formlabel {
+    color: #3a1867;
+    font-size: 19px;
+    font-weight: bold;
+}
+.table{
+    color: #0f1449;
+}
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+
+
+@keyframes growProgressBar {
+  0%, 33% { --pgPercentage: 0; }
+  100% { --pgPercentage: var(--value); }
+}
+
+@property --pgPercentage {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+div[role="progressbarGreen"] {
+  --size: 12rem;
+  --fg: #00b11d;/* #9e00b1 */
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: 
+    radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+    ;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+
+div[role="progressbarGreen"]::before {
+  counter-reset: percentage var(--txt);
+  content: counter(percentage) '%';
+}
+
+
+
+div[role="progressbarRed"] {
+    --size: 12rem;
+    --fg: #f82516;
+    --bg: #def;
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+      ;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 5);
+    color: var(--fg);
+}
+
+div[role="progressbarRed"]::before {
+    counter-reset: percentage var(--txt);
+    content: counter(percentage) '%';
+}
+
+.col-lg-4 {
+    width: fit-content;
+  }

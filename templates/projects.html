@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title%}Projects{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/projects.css" type="text/css" charset="utf-8">
+<script src="static/assets/js/projects.js"></script>
+
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<div class="">
+    <div class="row">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 class="fw-bold" style="font-size:xxx-large;">Catalogue of Projects</h2>
+            <p class="text-muted" style="font-size: medium;">The following inventory includes a comprehensive
+                compilation of every single project that has been undertaken,
+                completed, or is currently in progress. The button leads to a
+                visual representation of the project success and relevant data</p>
+        </div>
+    </div>
+    <button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/new_project'">Add
+        Project</button>
+
+    {% if user_projects is defined and user_projects|length > 0 %}
+    <section class="py-5">
+        <!-- Incomplete Projects user is PM of -->
+        <h4>Ongoing Projects (PM)</h4>
+        <div class="container py-5" style="padding-right: 0px;">
+            {% if user_projects is defined and user_projects|length > 0 %}
+            <div class="row row-cols-1 row-cols-md-2 mx-auto"
+                style="max-width: 900px;padding-right: 0px;margin-right: -13px;">
+                {% for project in user_projects %}
+                    {% if project.manager_id == current_user.id and project.is_completed == False %}
+                    <div class="col-lg-4 mb-4">
+                        <div class="p-card"><a href="/project/{{ project.id }}">
+                            {% if project.manager_id == current_user.id %}
+                                <div style="display: flex; justify-content: center;">
+                                    {% if project.pred %} <!-- Success -->
+                                        {% if project.accuracy %}
+                                            <div role="progressbarGreen" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                                                style="--value:{{project.accuracy | round | int}}; --txt:{{project.accuracy | round | int}}" title="Chance of success: {{project.accuracy | round | int}}%"></div>
+                                        {% else %}
+                                            <div role="progressbarGreen" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                                                style="--value:100; --txt:0" title="Insufficient data for ML prediction"></div> <!-- no accuracy given - TODO: might need to change idk -->
+                                        {% endif %}
+                                    {% else %} <!-- Failure -->
+                                        {% if project.accuracy %}
+                                            <div role="progressbarRed" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                                                style="--value:{{project.accuracy | round | int}}; --txt:{{project.accuracy | round | int}}" title="Chance of failure: {{project.accuracy | round | int}}%"></div>
+                                        {% else %}
+                                            <div role="progressbarRed" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                                                style="--value:100; --txt:0" title="Insufficient data for ML prediction"></div> <!-- no accuracy given - TODO: might need to change idk -->
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </a>
+                            <br>
+                            {% endif %}
+
+                            <a href="/project/{{ project.id }}" class="py-4"><span class="badge bg-primary mb-2">Project
+                                    Dashboard</span>
+                                <h3 class="fw-bold">{{project.name}}</h3>
+                            </a>
+                            <h5>Deadline:</h5>
+                            <h4 class="details"> {{project.deadline}}</h4>
+                            <h5>Manager:</h5>
+                            <h4 class="details"> {{managers[project.id|string]}}</h4>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Incomplete Projects user is apart of (not PM) -->
+        <h4>Ongoing Projects (Member)</h4>
+        <div class="container py-5" style="padding-right: 0px;">
+            {% if user_projects is defined and user_projects|length > 0 %}
+            <div class="row row-cols-1 row-cols-md-2 mx-auto"
+                style="max-width: 900px;padding-right: 0px;margin-right: -13px;">
+                {% for project in user_projects %}
+                    {% if project.manager_id != current_user.id and project.is_completed == False %}
+                    <div class="col-lg-4 mb-4">
+                        <div class="p-card"><a href="/project/{{ project.id }}">
+                            <a href="/project/{{ project.id }}" class="py-4"><span class="badge bg-primary mb-2">Project
+                                    Dashboard</span>
+                                <h3 class="fw-bold">{{project.name}}</h3>
+                            </a>
+                            <h5>Deadline:</h5>
+                            <h4 class="details"> {{project.deadline}}</h4>
+                            <h5>Manager:</h5>
+                            <h4 class="details"> {{managers[project.id|string]}}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+
+        <!-- Complete projects -->
+        <h4>Completed Projects:</h4>
+        <div class="container py-5" style="padding-right: 0px;">
+            {% if user_projects is defined and user_projects|length > 0 %}
+            <div class="row row-cols-1 row-cols-md-2 mx-auto"
+                style="max-width: 900px;padding-right: 0px;margin-right: -13px;">
+                {% for project in user_projects %}
+                    {% if project.is_completed == True %}
+                    <div class="col-lg-4 mb-4">
+                        <div class="p-card"><a href="/project/{{ project.id }}">
+                            <a href="/project/{{ project.id }}" class="py-4"><span class="badge bg-primary mb-2">Project
+                                    Dashboard</span>
+                                <h3 class="fw-bold">{{project.name}}</h3>
+                            </a>
+                            <h5>Deadline:</h5>
+                            <h4 class="details"> {{project.deadline}}</h4>
+                            <h5>Manager:</h5>
+                            <h4 class="details"> {{managers[project.id|string]}}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {% else %}
+    <div class="center">
+        <h1>You don't have any projects!</h1>
+    </div>
+    {% endif %}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title%}progress bar{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/pgbar.css" type="text/css" charset="utf-8">
+<script src="static/js/pgbar.js"></script>
+
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<p>Welcome to your pg..</p>
+<section>
+    <div class="circle-wrap">
+      <div class="circle">
+        <div class="mask full">
+          <div class="fill"></div>
+        </div>
+        <div class="mask half">
+          <div class="fill"></div>
+        </div>
+        <div class="inside-circle"> 40% </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 180deg : 100% -->
+  <!-- pdeg : pval -->
+  <!-- pdeg = 9/5 * pval -->
+{% endblock %}

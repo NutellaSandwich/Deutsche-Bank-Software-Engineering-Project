@@ -1,0 +1,33 @@
+.formContainer {
+    color: #1e223f;
+    background-color: #b7b9cc;
+    margin-top: 5px;
+    padding: 20px;
+    padding-top: 30px;
+    border: 1px solid black;
+    /* This set radius to all 4 corners */
+    border-radius: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-primary {
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 auto;
+    background-color: #7231c8;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    min-height: 50px;
+    min-width: 120px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary-hover:hover {
+    background-color: #3a1867;
+    transition: 0.25s;
+}

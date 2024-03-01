@@ -1,0 +1,164 @@
+{% extends"base.html" %}
+{% block title%}Edit Profile{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}" type="text/css" charset="utf-8">
+<script src="static/js/edit_profile.js"></script>
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <div class="container-fluid">
+            <form id="edit_profile_form" action="/edit_profile" method="POST" enctype="multipart/form-data">
+
+                <div class="row mb-3">
+                    <div class="col-lg-4">
+                        <div class="card mb-3">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 fw-bold">Edit Profile Picture </p>
+                            </div>
+                            <div class="card-body text-center shadow">
+                                <label class="formLabel" for="image_file">Profile Picture</label>
+                                <input type="file" id="image_file" name="image_file" accept=".png,.jpg,.jpeg,.gif" onchange="readURL(this);">
+                            </div>
+                            <div class="center">
+                                <img id="profileImg" class="rounded-circle mb-3 mt-4" src="{{ current_user.profile_image_path }}" width="160" height="160">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User details box -->
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">User Details</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="left>
+                                            <label class="formlabel" for="username">Username:</label><br>
+                                            <input class="textInput" type="text" name="username" id="username"
+                                                value="{{current_user.username}}" required disabled>
+                                        </div>
+
+                                        <div class="right>
+                                            <label class="formlabel" for="password">Password:</label><br>
+                                            <input class="textInput" type="password" name="password" id="password"
+                                                value="Password" required disabled>
+                                        </div>
+
+                                        <div class="clear">&nbsp;</div>
+
+                                        <div class="left>
+                                            <label class="formlabel" for="firstname">Firstname:</label><br>
+                                            <input class="textInput" type="text" name="firstname" id="firstname"
+                                                value="{{current_user.firstname}}" required>
+                                        </div>
+
+                                        <div class="right>
+                                            <label class="formlabel" for="lastname">Lastname:</label><br>
+                                            <input class="textInput" type="text" name="lastname" id="lastname"
+                                                value="{{current_user.lastname}}" required>
+                                        </div>
+
+                                        <div class="clear">&nbsp;</div>
+
+                                        <div class="">
+                                            <label class="formlabel" for="email">Email:</label><br>
+                                            <input class="textInput" type="text" name="email" id="email"
+                                                value="{{current_user.email}}" required>
+                                        </div>
+                                        
+                                        <div class="clear">&nbsp;</div>
+
+                                        <div class="">
+                                            <label class="formlabel" for="phone_number">Phone
+                                                Number:</label><br>
+                                            <input class="textInput" type="tel" name="phone_number" id="phone_number"
+                                                value="{{current_user.phone_number}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="centering">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Contact Settings</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <label class="formlabel noCenter" for="department">Department:</label><br>
+                                <select class="dropdown" name="department" id="department" required>
+                                    {% for department in departments %}
+                                    <option value="{{department.id}}" {% if (current_user.department_id==department.id)
+                                        %} selected="selected" {% endif %}>{{department.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="left>
+                                <label class="formlabel noCenter" for="language">Language:</label><br>
+                                <select class="dropdown" name="language" id="language" required>
+                                    {% for language in languages %}
+                                    <option value="{{language.name}}" {% if (current_user.language==language.name) %}
+                                        selected="selected" {% endif %}>{{language.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="right>
+                                <label class="formlabel noCenter" for="timezone">Timezone:</label><br>
+                                <select class="dropdown" name="timezone" id="timezone" required>
+                                    {% for timezone in timezones %}
+                                    <option value="{{timezone.name}}" {% if (current_user.timezone==timezone.name) %}
+                                        selected="selected" {% endif %}>{{timezone.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="left>
+                                <label class="formlabel noCenter" for="currency">Currency:</label><br>
+                                <select class="dropdown" name="currency" id="currency" required>
+                                    {% for currency in currencies %}
+                                    <option value="{{currency.name}}" {% if (current_user.currency==currency.name) %}
+                                        selected="selected" {% endif %}>{{currency.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="left>
+                                <label class="formlabel noCenter" for="years_at_company">Years at
+                                    Company:</label><br>
+                                <input class="textInput" type="number" name="years_at_company" id="years_at_company"
+                                    placeholder="Years" value="{{current_user.yearsAtCompany}}" required>
+                            </div>
+
+                            <br>
+                            <div class=" center">
+                                <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn"
+                                    value="Save Changes">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+
+{% endblock %}

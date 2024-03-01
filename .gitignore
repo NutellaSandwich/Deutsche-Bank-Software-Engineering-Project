@@ -1,0 +1,4 @@
+__pycache__
+vcwk
+.env
+database.sqlite

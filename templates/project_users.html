@@ -1,0 +1,42 @@
+{% extends"base.html" %}
+{% block title%}Add User{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/user.css')}}" type="text/css" charset="utf-8">
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Add a new User to the {{project.name}} project</h1>
+
+<div class="formContainer">
+    <form id="add_user_form" action="/add_user/{{project.id}}" method="POST">
+        <div class="formRowContainer">
+            <label class="formlabel" for="username">Username:</label><br>
+            <input class="textInput" type="text" name="username" id="username" placeholder="Username" title="Enter the username of the user you want to add." required>
+        </div>
+
+        <div class="formRowContainer">
+            <label class="formlabel" for="role">Role:</label><br>
+            <input class="textInput" type="text" name="role" id="role" placeholder="Software Engineer" title="Enter this users role." required>
+        </div>
+
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Survey{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/survey.css') }}">
+    <script type="text/javascript" src="static/js/survey.js"></script>
+    <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+{% endblock %}
+
+{% block header %}
+    {{ super() }}
+{% endblock %}
+
+{% block main %}
+    {{ super() }}
+
+    <h1>Weekly Project Survey</h1>
+    <p>Please answer the following questions:</p>
+    <body>
+      <div class="formContainer">
+    <form id="surveyForm" action="/survey/{{project_id}}" method="POST">
+        <!-- <input type="hidden" name="project_id" value="{{ project_id }}"> -->
+
+        <label for="experience">How experienced are you in the role you were assigned to last week?</label>
+        <span id="experienceValue" class="sliderValue">{{ experience }}</span>
+        <input type="range" name="experience" id="experience" min="1" max="5" value="{{ experience }}" required class="slider">
+        <p class="num"><span id="ex"></span></p>
+            <script>
+                var sliderex = document.getElementById("experience");
+                var outputex = document.getElementById("ex");
+                outputex.innerHTML = sliderex.value;
+                
+                sliderex.oninput = function() {
+                  outputex.innerHTML = this.value;
+                }
+                </script>
+        </body>
+        <body>
+        <label for="working_environment">How would you rate the working environment in the past week?</label>
+        <span id="workingEnvironmentValue" class="sliderValue">{{working_environment}}</span>
+        <input type="range" name="working_environment" id="working_environment" min="1" max="5" value="{{working_environment}}" required class="slider">
+        <p class="num"><span id="work"></span></p>
+            <script>
+                var sliderwo = document.getElementById("working_environment");
+                var outputwo = document.getElementById("work");
+                outputwo.innerHTML = sliderwo.value;
+                
+                sliderwo.oninput = function() {
+                  outputwo.innerHTML = this.value;
+                }
+                </script>
+        </body>
+        <body>
+        <label for="hours_worked">How many hours did you work last week?</label>
+        <span id="hoursWorkedValue" class="sliderValue">{{hours_worked}}</span>
+        <input type="range" name="hours_worked" id="hours_worked" min="0" max="168" value="40" required class="slider">
+        <p class="num"><span id="hour"></span></p>
+        <script>
+            var sliderho = document.getElementById("hours_worked");
+            var outputho = document.getElementById("hour");
+            outputho.innerHTML = sliderho.value;
+            
+            sliderho.oninput = function() {
+              outputho.innerHTML = this.value;
+            }
+            </script>
+        </body>
+
+        <body>
+        <label for="communication">How effective has the communication been with the team in the past week?</label>
+        <span id="communicationValue" class="sliderValue">{{communication}}</span>
+        <input type="range" name="communication" id="communication" min="1" max="5" value="{{communication}}" required class="slider">
+        <p class="num"><span id="com"></span></p>
+        <script>
+            var sliderco = document.getElementById("communication");
+            var outputco = document.getElementById("com");
+            outputco.innerHTML = sliderco.value;
+            
+            sliderco.oninput = function() {
+              outputco.innerHTML = this.value;
+            }
+            </script>
+        </body>
+
+
+        <div class="center">
+
+          <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form></div>
+{% endblock %}

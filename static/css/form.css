@@ -1,0 +1,127 @@
+<<<<<<< HEAD
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}.formContainer {
+    width: max(60%, 600px);
+=======
+.formContainer {
+    /* width: max(60%, 600px); */
+>>>>>>> 6ddedb21a927a315fb10c8ed6e0d3b9c1c5e2cfd
+    margin: auto;
+    text-align: left;
+    color: #2fe5b2;
+    outline: #7231c8;
+    /* outline: 2px dashed green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.formRowContainer {
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* outline: 2px dashed red; */
+}
+
+.formlabel {
+    text-align: left;
+    flex: 1;
+}
+
+.textInput {
+    padding: 10px;
+    margin: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: medium;
+    width: 50%;
+}
+
+<<<<<<< HEAD
+.left {
+    float: left;
+=======
+.expenses.textInput {
+    width: auto;
+}
+
+/*
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+} */
+
+
+.dropdown {
+    padding: 10px;
+    margin: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-family: inherit;
+    width: 50%;
+    font-size: medium;
+}
+
+.clear {
+    clear: both;
+>>>>>>> 6ddedb21a927a315fb10c8ed6e0d3b9c1c5e2cfd
+}
+
+textarea {
+    min-height: 60px;
+    max-width: 350px;
+}
+
+input {
+    width: 80%;
+}

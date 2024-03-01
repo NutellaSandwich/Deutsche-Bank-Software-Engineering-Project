@@ -1,0 +1,59 @@
+{% extends"base.html" %}
+{% block title%}Edit Project{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/projects.css')}}" type="text/css" charset="utf-8">
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h2>Edit Project Details</h2>
+
+<div class="formContainer">
+    <form id="edit_project_form" action="/edit_project/{{project.id}}" method="POST" enctype="multipart/form-data">
+        <label class="formlabel" for="name">Name:</label><br>
+        <input class="textInput" type="text" name="name" id="name" placeholder="{{project.name}}" value="{{project.name}}" title="The name of the project." required><br>
+
+        <label class="formlabel" for="manager">Manager:</label><br>
+        <input class="textInput" type="text" name="manager" id="manager" value="{{project_manager.username}}" title="The manager of the project" required disabled><br>
+
+        <label class="formlabel" for="budget">Budget:</label><br>
+        <input class="textInput" type="number" name="budget" id="budget" min="0" placeholder="{{project.budget}}" value="{{project.budget}}" title="The budget of the project." required><br>
+        
+        <label class="formlabel" for="start_date">Start Date:</label><br>
+        <input class="textInput" type="date" name="start_date" id="start_date" value="{{project.start_date}}" title="The start date of the project." required><br>
+
+        <label class="formlabel" for="deadline">Deadline:</label><br>
+        <input class="textInput" type="date" name="deadline" id="deadline" value="{{project.deadline.strftime('%Y-%m-%d')}}" title="The deadline of the project." required><br>
+
+        <label class="formlabel" for="is_complete">Complete?:</label><br>
+        <select class="dropdown" name="is_complete" id="is_complete" required title="Is the project complete?">
+            <option value="True" {% if project.is_completed == True %} selected="selected" {% endif %}>True</option>
+            <option value="False" {% if project.is_completed == False %} selected="selected" {% endif %}>False</option>
+        </select><br>
+
+        <label class="formlabel" for="scope">Scope:</label>
+        <input type="range" min="-5" max="5" value="{{project.scope}}" id="scope" name="scope" title="How satisfied are you with the projects scope? too narrow - too wide"><br>
+
+        <label class="formlabel" for="github_repo">GitHub Repo URL:</label>
+        <input class="textInput" type="text" id="github_repo" name="github_repo" value="{{project.repo_url}}" placeholder="{{project.repo_url}}" title="Enter the URL for the projects code repo."><br>
+
+        <label class="formlabel" for="gh_repo_token">GitHub Access Token:</label>
+        <input class="textInput" type="text" id="gh_repo_token" name="gh_repo_token" value="{{project.repo_token}}" placeholder="{{project.repo_token}}" title="Enter the access token for your projects GitHub repo."><br>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form>
+
+</div>
+ {% endblock %}

@@ -1,0 +1,45 @@
+{% extends"base.html" %}
+{% block title%}Your Technologies{% endblock %}
+
+{% block head %}
+{{super()}}<link rel="stylesheet" href="static/css/user_technology.css" type="text/css" charset="utf-8">
+
+<!-- <link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8"> -->
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<button class="btn-primary btn-primary-hover" type="button" onclick="location.href='/add_technology'">Add New Technology</button>
+
+
+<div class="formContainer">
+    <form id="add_technology_form" action="/user_technology" method="POST">
+        <table class="table">
+            <tr>
+                <th>Technology</th>
+                <th>Years Experience</th>
+            </tr>
+            {% for technology in technologies %}
+            <tr>
+                <td>{{technology.name}}</td>
+                <td><input type="number" id="{{technology.technology_id}}" name="{{technology.technology_id}}" value="{{technology.years}}" required></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="formRowContainer center">
+            <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="submitbtn" value="Submit">
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

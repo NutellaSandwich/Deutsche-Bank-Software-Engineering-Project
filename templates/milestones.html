@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title%}Milestones{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="static/css/form.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{url_for('static', filename='css/expmil.css')}}" type="text/css" charset="utf-8">
+<script src="static/js/milestones.js"></script>
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<h1>Project Milestones</h1>
+<p>Enter project milestone details below</p>
+<div class="formContainer">
+
+    <form id="milestonesForm" action="#" method="POST">
+        <h4>Milestone</h4>
+        <input class="textInput expenses" type="text" name="milTitle" id="milTitle"
+            placeholder="Milestone Title"><br><br>
+        <h4>Description</h4>
+
+        <textarea rows="4" cols="50" class="textInput" type="text" name="milDescription" id="milDescription"
+            placeholder="Description"></textarea><br><br>
+        <h4>Date</h4>
+
+        <input class="textInput expenses" type="date" name="milDate" id="milDate" placeholder="Deadline"><br><br>
+        <!-- <h4>Project ID</h4> -->
+
+        <input type="hidden" id="projID" name="projID" value="{{ projectid }}">
+        <!-- change value to be value entered from prev page -->
+
+        <input class="btn-primary btn-primary-hover" type="submit" name="submit" id="milSubmitBtn" value="Submit">
+    </form>
+</div>
+{% endblock %}
+
+<!-- add error messages if no data entered -->

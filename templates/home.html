@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title%}Home{% endblock %}
+
+{% block head %}
+{{super()}}
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+{% if current_user.is_authenticated %}
+    <h1>Hello {{ current_user.username }}</h1>
+{% endif %}
+
+<p>Welcome to your home.</p>
+
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends"base.html" %}
+{% block title%}Project{% endblock %} 
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="/static/css/projects.css">
+
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+
+<div class="">
+    <div class="noCenter">
+        <h6> {{project.name}}</h6>
+
+        <div class="card shadow" style="padding: 1px 1px">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">
+                <h4>Project Manager: <strong>{{project_manager.firstname}} {{project_manager.lastname}}</strong></h4>
+                </p>
+            </div>
+        </div>
+        <br>
+        <!-- <br> -->        
+        <a href="/survey/{{project.id}}"><button class="glow-on-hover"
+            style="margin-bottom:  10px; font-size: 25px; padding: 15px; height: auto;" type="button">
+            <i class="fa fa-file-text-o"></i> Take Survey</button></a>
+
+        <a href="/leave_project/{{project.id}}"><button class="glow-on-hover"
+            style="margin-bottom:  10px; font-size: 25px; padding: 15px; height: auto;" type="button">
+            <i class="fa fa-sign-out"></i> Leave Project</button></a>
+    </div>
+</div>
+<br>
+
+<!-- Project Info -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Project Info</p>
+    </div>
+    <div class="card-body">
+        <div class="noCenter">
+            <h4 class="noCenter">Project ID: {{project.id}}</h4>
+            <h4 class="noCenter">Project Name: {{project.name}}</h4>
+            <h4 class="noCenter">Start Date: {{project.start_date.strftime('%d-%m-%Y')}}</h4>
+            <h4 class="noCenter">Deadline: {{project.deadline.strftime('%d-%m-%Y')}}</h4>
+            <h4 class="noCenter">Complete: {{project.is_completed}}</h4>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Project Members -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Team Members</p>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in project_members %}
+                    <tr>
+                        <td>{{user[0].username}}</td>
+                        <td> {{ user.role }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Technologies -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Technologies</p>
+    </div>
+    <div class="card-body">
+        <div class="">
+            {% if project_technologies %}
+            <ul>
+                {% for technology in project_technologies %}
+                <li>{{technology.name}}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h4>No Technologies</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Milestones -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Milestones</p>
+    </div>
+
+    <div class="card-body">
+
+        {% if project_milestones %}
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Deadline</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for milestone in project_milestones %}
+                    <tr>
+                        <td>{{ milestone.title }}</td>
+                        <td>{{ milestone.deadline.strftime("%d-%m-%Y") }}</td>
+                        <td>{{ milestone.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h4>No Milestones</h4>
+        {% endif %}
+    </div>
+</div>
+<br>
+
+<!-- Expenses -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Expenses</p>
+    </div>
+
+    <div class="card-body">
+        {% if project_expenses %}
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in project_expenses %}
+                    <tr>
+                        <td>{{ expense.name }}</td>
+                        <td>{{ expense.timestamp.strftime("%d-%m-%Y") }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h4>No Expenses</h4>
+        {% endif %}
+    </div>
+</div>
+<br>
+
+</div>
+<br>
+</div>
+</div>
+    
+{% endblock %}

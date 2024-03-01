@@ -1,0 +1,253 @@
+{% extends"base.html" %}
+{% block title%}Project Dashboard{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="/static/css/projects.css">
+
+{% endblock %}
+
+{% block header %}
+{{super()}}
+{% endblock %}
+
+{% block main%}
+{{super()}}
+
+<div class="">
+    <div class="noCenter">
+        <h6> {{project.name}}</h6>
+
+        <div class="card shadow" style="padding: 1px 1px">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">
+                <h4>Project Manager: <strong>{{project_manager.firstname}} {{project_manager.lastname}}</strong></h4>
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <!-- Progress Bar -->
+        <h3 class="text-dark mb-4">Progress Bar</h3>
+        <div class="centering">
+            <div class="progress-card">
+                <!-- progressbar -->
+                <div>
+                    {% if project.pred %} <!-- Success -->
+                        {% if project.accuracy %}
+                        <div role="progressbarGreen" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:{{project.accuracy | round | int}}; --txt:{{project.accuracy | round | int}}" title="Chance of success: {{project.accuracy | round | int}}%"></div>
+                        {% else %}
+                        <div role="progressbarGreen" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:100; --txt:0" title="Insufficent data for ML prediction"></div> <!-- no accuracy given - TODO: might need to change idk -->
+                        {% endif %}
+                    {% else %} <!-- Failure -->
+                        {% if project.accuracy %}
+                        <div role="progressbarRed" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:{{project.accuracy | round | int}}; --txt:{{project.accuracy | round | int}}" title="Chance of failure: {{project.accuracy | round | int}}%"></div>
+                        {% else %}
+                        <div role="progressbarRed" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:100; --txt:0" title="Insufficient data for ML prediction"></div> <!-- no accuracy given - TODO: might need to change idk -->
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- <br> -->
+        <a href="/edit_project/{{project.id}}"><button class="glow-on-hover"
+                style="margin-bottom:  10px; font-size: 25px; padding: 15px; height: auto;" type="button">
+                <i class="fas fa-pencil-square-o"></i> Edit Project</button></a>
+        
+        <a href="/survey/{{project.id}}"><button class="glow-on-hover"
+            style="margin-bottom:  10px; font-size: 25px; padding: 15px; height: auto;" type="button">
+            <i class="fa fa-file-text-o"></i> Take Survey</button></a>
+
+    </div>
+</div>
+<br>
+
+<!-- Project Info -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Project Info</p>
+    </div>
+    <div class="card-body">
+        <div class="noCenter">
+            <h4 class="noCenter">Project ID: {{project.id}}</h4>
+            <h4 class="noCenter">Project Name: {{project.name}}</h4>
+            <h4 class="noCenter">Budget: £{{project.budget}}</h4>
+            <h4 class="noCenter">Start Date: {{project.start_date.strftime('%d-%m-%Y')}}</h4>
+            <h4 class="noCenter">Deadline: {{project.deadline.strftime('%d-%m-%Y')}}</h4>
+            <h4 class="noCenter">Complete: {{project.is_completed}}</h4>
+            <h4 class="noCenter">Code Quality: {{code_quality}}</h4>
+            <br>
+            {% if project.pred %}
+                <h4 class="noCenter">Predicted Sucess: {{project.pred}}</h4>
+                {% if project.accuracy %}
+                <h4 class="noCenter">Accuracy: {{project.accuracy | round | int}}</h4>
+                {% endif %}
+            {% else %}
+                <h4 style="color: #ff0000">Not enough data entered for ML model</h4>
+            {% endif %} <!-- TODO: might remove this - idk depending on how rohits stuff works. -->
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Project Members -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Team Members</p>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in project_members %}
+                    <tr>
+                        <td>{{user[0].username}}</td>
+                        <td> {{ user.role }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <a href="/add_user/{{project.id}}"><button class="glow-on-hover" type="button">Add Team Members</button></a>
+    </div>
+</div>
+<br>
+
+<!-- Technologies -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Technologies</p>
+    </div>
+    <div class="card-body">
+        <div class="">
+            {% if project_technologies %}
+            <ul>
+                {% for technology in project_technologies %}
+                <li>{{technology.name}}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h4>No Technologies</h4>
+            {% endif %}
+
+            <a href="/project_technology/{{project.id}}"><button class="glow-on-hover" type="button">Edit
+                    Technologies</button></a>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Milestones -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Milestones</p>
+    </div>
+
+    <div class="card-body">
+
+        {% if project_milestones %}
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Deadline</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for milestone in project_milestones %}
+                    <tr>
+                        <td>{{ milestone.title }}</td>
+                        <td>{{ milestone.deadline.strftime("%d-%m-%Y") }}</td>
+                        <td>{{ milestone.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h4>No Milestones</h4>
+        {% endif %}
+
+        <a href="/milestones/{{project.id}}"><button class="glow-on-hover" type="button">Add Milestones</button></a>
+    </div>
+</div>
+<br>
+
+<!-- Expenses -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Expenses</p>
+    </div>
+
+    <div class="card-body">
+        {% if project_expenses %}
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in project_expenses %}
+                    <tr>
+                        <td>{{ expense.name }}</td>
+                        <td>{{ expense.timestamp.strftime("%d-%m-%Y") }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h4>No Expenses</h4>
+        {% endif %}
+
+        <a href="/expenses/{{project.id}}"><button class="glow-on-hover" type="button">Add Expenses</button></a>
+    </div>
+</div>
+<br>
+
+<!-- Suggestions -->
+<div class="card shadow" style="padding: 1px 1px">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Suggestions</p>
+    </div>
+    <div class="card-body">
+        <div class="">
+            {% if project_suggestions %}
+            <ol>
+                {% for suggestion in project_suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ol>
+            {% else %}
+            <h4>No Suggestions</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</div>
+<br>
+</div>
+</div>
+{% endblock %}
